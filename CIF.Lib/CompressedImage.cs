@@ -19,29 +19,24 @@ namespace CIF.Lib
         public int Width { get; }
         public int Height { get; }
 
-        Color[,] Colors;
+        List<Layer> Layers;
 
         public CompressedImage(int width, int height, Color backgroundColor)
         {
             Width = width;
             Height = height;
-            Colors = new Color[Width, Height];
-
-            for(int y = 0; y < Height; y++)
+            Layers = new()
             {
-                for(int x = 0; x < Width; x++)
-                {
-                    Colors[x, y] = backgroundColor;
-                }
-            }
+                new(width, height, backgroundColor)
+            };
         }
 
-        public byte[] Compress()
+        public CompressedImage(byte[] rawData)
         {
 
         }
 
-        public static CompressedImage Decompress(byte[] rawData)
+        public byte[] Compress()
         {
 
         }
