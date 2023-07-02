@@ -98,13 +98,13 @@ namespace CIF.Lib
                 int layerAlphaLenght = BitConverter.ToInt32(data.Take(4).ToArray());
                 data = data.Skip(4).ToArray();
 
-                byte[] redValues = data.Take(layerRedLenght).ToArray();
+                byte[] redValues = Compression.Decompress(data.Take(layerRedLenght).ToArray());
                 data = data.Skip(layerRedLenght).ToArray();
-                byte[] greenValues = data.Take(layerGreenLenght).ToArray();
+                byte[] greenValues = Compression.Decompress(data.Take(layerGreenLenght).ToArray());
                 data = data.Skip(layerGreenLenght).ToArray();
-                byte[] blueValues = data.Take(layerBlueLenght).ToArray();
+                byte[] blueValues = Compression.Decompress(data.Take(layerBlueLenght).ToArray());
                 data = data.Skip(layerBlueLenght).ToArray();
-                byte[] alphaValues = data.Take(layerAlphaLenght).ToArray();
+                byte[] alphaValues = Compression.Decompress(data.Take(layerAlphaLenght).ToArray());
                 data = data.Skip(layerAlphaLenght).ToArray();
                 Layer layer = new(layerWidth, layerHeight, Color.White)
                 {
