@@ -8,6 +8,6 @@ namespace CIF.Lib
 {
     public class LayerSettings
     {
-        public int Transparency { get; set; }
+        public byte Transparency { get; set; }
     }
 }
