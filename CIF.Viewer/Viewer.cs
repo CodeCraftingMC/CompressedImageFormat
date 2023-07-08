@@ -23,6 +23,7 @@ namespace CIF.Viewer
                         bmp.SetPixel(x, y, LoadedImage.Layers[i].GetPixel(x, y));
                     }
                 }
+                UncompressedLayers.Add(bmp);
             }
 
             InitializeComponent();
