@@ -63,16 +63,6 @@ namespace CIF.Lib
             };
         }
 
-        public CompressedImage(int width, int height, Color backgroundColor, byte quality)
-        {
-            Width = width;
-            Height = height;
-            Layers = new()
-            {
-                new(width, height, backgroundColor)
-            };
-        }
-
         public CompressedImage(byte[] rawData)
         {
             Layers = new();
