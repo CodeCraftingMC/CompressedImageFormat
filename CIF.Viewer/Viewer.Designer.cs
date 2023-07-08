@@ -51,13 +51,13 @@
             this.ViewTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolboxTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ColorSelectorTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.LayersTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowHelpTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolGB = new System.Windows.Forms.GroupBox();
             this.ColorSelectorGB = new System.Windows.Forms.GroupBox();
             this.LayersGB = new System.Windows.Forms.GroupBox();
-            this.LayersTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPB = new System.Windows.Forms.PictureBox();
             this.MainMS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPB)).BeginInit();
@@ -219,14 +219,20 @@
             // ToolboxTSMI
             // 
             this.ToolboxTSMI.Name = "ToolboxTSMI";
-            this.ToolboxTSMI.Size = new System.Drawing.Size(180, 22);
+            this.ToolboxTSMI.Size = new System.Drawing.Size(148, 22);
             this.ToolboxTSMI.Text = "&Toolbox";
             // 
             // ColorSelectorTSMI
             // 
             this.ColorSelectorTSMI.Name = "ColorSelectorTSMI";
-            this.ColorSelectorTSMI.Size = new System.Drawing.Size(180, 22);
+            this.ColorSelectorTSMI.Size = new System.Drawing.Size(148, 22);
             this.ColorSelectorTSMI.Text = "&Color Selector";
+            // 
+            // LayersTSMI
+            // 
+            this.LayersTSMI.Name = "LayersTSMI";
+            this.LayersTSMI.Size = new System.Drawing.Size(148, 22);
+            this.LayersTSMI.Text = "&Layers";
             // 
             // HelpTSMI
             // 
@@ -277,17 +283,12 @@
             this.LayersGB.TabStop = false;
             this.LayersGB.Text = "Layers";
             // 
-            // LayersTSMI
-            // 
-            this.LayersTSMI.Name = "LayersTSMI";
-            this.LayersTSMI.Size = new System.Drawing.Size(180, 22);
-            this.LayersTSMI.Text = "&Layers";
-            // 
             // MainPB
             // 
             this.MainPB.Location = new System.Drawing.Point(156, 24);
             this.MainPB.Name = "MainPB";
             this.MainPB.Size = new System.Drawing.Size(622, 587);
+            this.MainPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MainPB.TabIndex = 4;
             this.MainPB.TabStop = false;
             // 
@@ -345,6 +346,6 @@
         private ToolStripMenuItem LayersTSMI;
         private GroupBox ColorSelectorGB;
         private GroupBox LayersGB;
-        private PictureBox MainPB;
+        public PictureBox MainPB;
     }
 }
