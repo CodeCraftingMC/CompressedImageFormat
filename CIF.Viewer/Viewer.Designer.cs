@@ -99,53 +99,54 @@
             // NewTSMI
             // 
             this.NewTSMI.Name = "NewTSMI";
-            this.NewTSMI.Size = new System.Drawing.Size(142, 22);
+            this.NewTSMI.Size = new System.Drawing.Size(180, 22);
             this.NewTSMI.Text = "&New";
+            this.NewTSMI.Click += new System.EventHandler(this.NewTSMI_Click);
             // 
             // OpenTSMI
             // 
             this.OpenTSMI.Name = "OpenTSMI";
-            this.OpenTSMI.Size = new System.Drawing.Size(142, 22);
+            this.OpenTSMI.Size = new System.Drawing.Size(180, 22);
             this.OpenTSMI.Text = "&Open";
             // 
             // RecentTSMI
             // 
             this.RecentTSMI.Name = "RecentTSMI";
-            this.RecentTSMI.Size = new System.Drawing.Size(142, 22);
+            this.RecentTSMI.Size = new System.Drawing.Size(180, 22);
             this.RecentTSMI.Text = "Open &Recent";
             // 
             // TSS1
             // 
             this.TSS1.Name = "TSS1";
-            this.TSS1.Size = new System.Drawing.Size(139, 6);
+            this.TSS1.Size = new System.Drawing.Size(177, 6);
             // 
             // SaveTSMI
             // 
             this.SaveTSMI.Name = "SaveTSMI";
-            this.SaveTSMI.Size = new System.Drawing.Size(142, 22);
+            this.SaveTSMI.Size = new System.Drawing.Size(180, 22);
             this.SaveTSMI.Text = "&Save";
             // 
             // SaveAsTSMI
             // 
             this.SaveAsTSMI.Name = "SaveAsTSMI";
-            this.SaveAsTSMI.Size = new System.Drawing.Size(142, 22);
+            this.SaveAsTSMI.Size = new System.Drawing.Size(180, 22);
             this.SaveAsTSMI.Text = "Save &As";
             // 
             // TSS2
             // 
             this.TSS2.Name = "TSS2";
-            this.TSS2.Size = new System.Drawing.Size(139, 6);
+            this.TSS2.Size = new System.Drawing.Size(177, 6);
             // 
             // CloseFileTSMI
             // 
             this.CloseFileTSMI.Name = "CloseFileTSMI";
-            this.CloseFileTSMI.Size = new System.Drawing.Size(142, 22);
+            this.CloseFileTSMI.Size = new System.Drawing.Size(180, 22);
             this.CloseFileTSMI.Text = "Close F&ile";
             // 
             // QuitTSMI
             // 
             this.QuitTSMI.Name = "QuitTSMI";
-            this.QuitTSMI.Size = new System.Drawing.Size(142, 22);
+            this.QuitTSMI.Size = new System.Drawing.Size(180, 22);
             this.QuitTSMI.Text = "&Quit";
             // 
             // EditTSMI
