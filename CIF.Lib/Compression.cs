@@ -18,7 +18,19 @@ namespace CIF.Lib
             {
                 if (data[i] == lastValue)
                 {
-                    count++;
+                    try
+                    {
+                        checked
+                        {
+                            count++;
+                        }
+                    }
+                    catch
+                    {
+                        compressed.Add(count);
+                        compressed.Add(lastValue);
+                        count = 1;
+                    }
                 }
                 else
                 {
@@ -53,9 +65,9 @@ namespace CIF.Lib
 
             return decompressed.ToArray();
         }
-        public static int RoundOff(this int i)
+        public static int RoundOff(this int i, int nearest)
         {
-            return ((int)Math.Round(i / 10.0)) * 10;
+            return ((int)Math.Round(i / (float)nearest)) * nearest;
         }
     }
 }
