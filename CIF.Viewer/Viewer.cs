@@ -12,20 +12,7 @@ namespace CIF.Viewer
         {
             LoadedImage = new(800, 600, Color.White);
             UncompressedLayers = new();
-            for(int i = 0; i < LoadedImage.Layers.Count; i++)
-            {
-                Bitmap bmp = new(LoadedImage.Width, LoadedImage.Height);
-
-                for(int y = 0; y < bmp.Height; y++)
-                {
-                    for(int x = 0; x < bmp.Width; x++)
-                    {
-                        bmp.SetPixel(x, y, LoadedImage.Layers[i].GetPixel(x, y));
-                    }
-                }
-                UncompressedLayers.Add(bmp);
-            }
-
+            ReloadImage();
             InitializeComponent();
         }
 
@@ -41,11 +28,30 @@ namespace CIF.Viewer
             return result;
         }
 
+        public void ReloadImage()
+        {
+            UncompressedLayers.Clear();
+            for (int i = 0; i < LoadedImage.Layers.Count; i++)
+            {
+                Bitmap bmp = new(LoadedImage.Width, LoadedImage.Height);
+
+                for (int y = 0; y < bmp.Height; y++)
+                {
+                    for (int x = 0; x < bmp.Width; x++)
+                    {
+                        bmp.SetPixel(x, y, LoadedImage.Layers[i].GetPixel(x, y));
+                    }
+                }
+                UncompressedLayers.Add(bmp);
+            }
+        }
+
         public void NewFile()
         {
             NewFileDialog newFileDialog = new();
             if (newFileDialog.ShowDialog() != DialogResult.OK) return;
             LoadedImage = new(newFileDialog.ImageWidth, newFileDialog.ImageHeight, newFileDialog.ImageBackColor);
+            ReloadImage();
         }
 
         private void Viewer_Load(object sender, EventArgs e)
@@ -57,5 +63,15 @@ namespace CIF.Viewer
         {
             NewFile();
         }
+
+        private async void MainPB_Paint(object sender, PaintEventArgs e) => await Task.Run(() =>
+        {
+            Bitmap bmp = new(LoadedImage.Width, LoadedImage.Height);
+            for (int i = 0; i < UncompressedLayers.Count; i++)
+            {
+                bmp = MergeBitmaps(bmp, UncompressedLayers[i]);
+            }
+            MainPB.Image = bmp;
+        });
     }
 }

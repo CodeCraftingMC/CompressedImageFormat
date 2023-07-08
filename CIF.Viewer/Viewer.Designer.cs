@@ -313,6 +313,7 @@
             this.MainPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.MainPB.TabIndex = 4;
             this.MainPB.TabStop = false;
+            this.MainPB.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPB_Paint);
             // 
             // ViewerPanel
             // 
@@ -336,6 +337,7 @@
             this.Controls.Add(this.ColorSelectorGB);
             this.Controls.Add(this.ToolGB);
             this.Controls.Add(this.MainMS);
+            this.DoubleBuffered = true;
             this.MainMenuStrip = this.MainMS;
             this.Name = "Viewer";
             this.Text = "CIF Viewer";
