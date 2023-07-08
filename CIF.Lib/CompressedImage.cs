@@ -24,10 +24,10 @@ namespace CIF.Lib
          *      1 Byte:  Layer Name Lenght
          *      x Bytes: Layer Name
          *      1 Byte:  Transparency
-         *      4 Bytes Lenght or red values
-         *      4 Bytes Lenght or green values
-         *      4 Bytes Lenght or blue values
-         *      4 Bytes Lenght or alpha values
+         *      4 Bytes Lenght of red values
+         *      4 Bytes Lenght of green values
+         *      4 Bytes Lenght of blue values
+         *      4 Bytes Lenght of alpha values
          *      (
          *          1 Byte: Times same red value
          *          1 Byte: Red Value
@@ -66,7 +66,7 @@ namespace CIF.Lib
         public CompressedImage(byte[] rawData)
         {
             Layers = new();
-            byte[] data = rawData.Skip(10).ToArray();
+            byte[] data = rawData.Skip(11).ToArray();
             Width = BitConverter.ToInt32(data.Take(4).ToArray());
             data = data.Skip(4).ToArray();
             Height = BitConverter.ToInt32(data.Take(4).ToArray());
@@ -75,7 +75,7 @@ namespace CIF.Lib
             int layerCount = BitConverter.ToInt32(data.Take(4).ToArray());
             data = data.Skip(4).ToArray();
 
-            for(int i = 0; i < layerCount; i++)
+            for (int i = 0; i < layerCount; i++)
             {
                 int layerLenght = BitConverter.ToInt32(data.Take(4).ToArray());
                 data = data.Skip(4).ToArray();
@@ -105,7 +105,7 @@ namespace CIF.Lib
                 byte[] blueValues = Compression.Decompress(data.Take(layerBlueLenght).ToArray());
                 data = data.Skip(layerBlueLenght).ToArray();
                 byte[] alphaValues = Compression.Decompress(data.Take(layerAlphaLenght).ToArray());
-                data = data.Skip(layerAlphaLenght).ToArray();
+
                 Layer layer = new(layerWidth, layerHeight, Color.White)
                 {
                     Name = layerName,
@@ -117,7 +117,11 @@ namespace CIF.Lib
                 {
                     for(int x = 0; x < layerWidth; x++)
                     {
-                        layer.SetPixel(x, y, Color.FromArgb(alphaValues[idx], redValues[idx], greenValues[idx], blueValues[idx]));
+                        try
+                        {
+                            layer.SetPixel(x, y, Color.FromArgb(alphaValues[idx], redValues[idx], greenValues[idx], blueValues[idx]));
+                        }
+                        catch { }
                         idx++;
                     }
                 }
@@ -136,6 +140,7 @@ namespace CIF.Lib
             data.AddRange(Encoding.ASCII.GetBytes("CIF"));
             data.Add(0x11);
             data.Add(0x01);
+            data.AddRange(BitConverter.GetBytes(0));
             data.AddRange(BitConverter.GetBytes(Width));
             data.AddRange(BitConverter.GetBytes(Height));
             data.AddRange(BitConverter.GetBytes(Layers.Count));
@@ -159,17 +164,27 @@ namespace CIF.Lib
                     for (int x = 0; x < Layers[i].Width; x++)
                     {
                         Color color = Layers[i].GetPixel(x, y);
-                        redValues.Add((byte)(color.R + (10 - color.R % 10)));
-                        greenValues.Add((byte)(color.G + (10 - color.G % 10)));
-                        blueValues.Add((byte)(color.B + (10 - color.B % 10)));
-                        alphaValues.Add((byte)(color.A + (10 - color.A % 10)));
+                        redValues.Add((byte)Compression.RoundOff(color.R, 10));
+                        greenValues.Add((byte)Compression.RoundOff(color.G, 10));
+                        blueValues.Add((byte)Compression.RoundOff(color.B, 10));
+                        alphaValues.Add(color.A);
                     }
                 }
 
-                layer.AddRange(Compression.Compress(redValues.ToArray()));
-                layer.AddRange(Compression.Compress(greenValues.ToArray()));
-                layer.AddRange(Compression.Compress(blueValues.ToArray()));
-                layer.AddRange(Compression.Compress(alphaValues.ToArray()));
+                byte[] compressedRedValues = Compression.Compress(redValues.ToArray());
+                byte[] compressedGreenValues = Compression.Compress(greenValues.ToArray());
+                byte[] compressedBlueValues = Compression.Compress(blueValues.ToArray());
+                byte[] compressedAlphaValues = Compression.Compress(alphaValues.ToArray());
+
+                layer.AddRange(BitConverter.GetBytes(compressedRedValues.Length));
+                layer.AddRange(BitConverter.GetBytes(compressedGreenValues.Length));
+                layer.AddRange(BitConverter.GetBytes(compressedBlueValues.Length));
+                layer.AddRange(BitConverter.GetBytes(compressedAlphaValues.Length));
+
+                layer.AddRange(compressedRedValues);
+                layer.AddRange(compressedGreenValues);
+                layer.AddRange(compressedBlueValues);
+                layer.AddRange(compressedAlphaValues);
 
                 data.AddRange(BitConverter.GetBytes(layer.Count));
                 data.AddRange(layer);
