@@ -50,6 +50,7 @@ namespace CIF.Lib
 
         public int Width { get; }
         public int Height { get; }
+        public byte Quality { get; }
 
         public List<Layer> Layers { get; private set; }
 
@@ -61,6 +62,18 @@ namespace CIF.Lib
             {
                 new(width, height, backgroundColor)
             };
+            Quality = 250;
+        }
+
+        public CompressedImage(int width, int height, Color backgroundColor, byte quality)
+        {
+            Width = width;
+            Height = height;
+            Layers = new()
+            {
+                new(width, height, backgroundColor)
+            };
+            Quality = quality;
         }
 
         public CompressedImage(byte[] rawData)
@@ -164,9 +177,9 @@ namespace CIF.Lib
                     for (int x = 0; x < Layers[i].Width; x++)
                     {
                         Color color = Layers[i].GetPixel(x, y);
-                        redValues.Add((byte)Compression.RoundOff(color.R, 10));
-                        greenValues.Add((byte)Compression.RoundOff(color.G, 10));
-                        blueValues.Add((byte)Compression.RoundOff(color.B, 10));
+                        redValues.Add((byte)Compression.RoundOff(color.R, -Quality + 256));
+                        greenValues.Add((byte)Compression.RoundOff(color.G, -Quality + 256));
+                        blueValues.Add((byte)Compression.RoundOff(color.B, -Quality + 256));
                         alphaValues.Add(color.A);
                     }
                 }
