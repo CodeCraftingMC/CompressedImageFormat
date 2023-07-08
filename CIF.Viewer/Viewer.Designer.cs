@@ -267,6 +267,7 @@
             // 
             // ColorSelectorGB
             // 
+            this.ColorSelectorGB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ColorSelectorGB.Location = new System.Drawing.Point(784, 24);
             this.ColorSelectorGB.Name = "ColorSelectorGB";
             this.ColorSelectorGB.Size = new System.Drawing.Size(200, 331);
@@ -276,6 +277,8 @@
             // 
             // LayersGB
             // 
+            this.LayersGB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LayersGB.Location = new System.Drawing.Point(784, 361);
             this.LayersGB.Name = "LayersGB";
             this.LayersGB.Size = new System.Drawing.Size(200, 250);
@@ -285,6 +288,9 @@
             // 
             // MainPB
             // 
+            this.MainPB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPB.Location = new System.Drawing.Point(156, 24);
             this.MainPB.Name = "MainPB";
             this.MainPB.Size = new System.Drawing.Size(622, 587);
