@@ -56,11 +56,15 @@
             this.ShowHelpTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolGB = new System.Windows.Forms.GroupBox();
+            this.ToolPenBtn = new System.Windows.Forms.Button();
             this.ColorSelectorGB = new System.Windows.Forms.GroupBox();
             this.LayersGB = new System.Windows.Forms.GroupBox();
             this.MainPB = new System.Windows.Forms.PictureBox();
+            this.ViewerPanel = new System.Windows.Forms.Panel();
             this.MainMS.SuspendLayout();
+            this.ToolGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPB)).BeginInit();
+            this.ViewerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMS
@@ -257,6 +261,7 @@
             // 
             // ToolGB
             // 
+            this.ToolGB.Controls.Add(this.ToolPenBtn);
             this.ToolGB.Dock = System.Windows.Forms.DockStyle.Left;
             this.ToolGB.Location = new System.Drawing.Point(0, 24);
             this.ToolGB.Name = "ToolGB";
@@ -264,6 +269,15 @@
             this.ToolGB.TabIndex = 1;
             this.ToolGB.TabStop = false;
             this.ToolGB.Text = "Toolbox";
+            // 
+            // ToolPenBtn
+            // 
+            this.ToolPenBtn.Image = global::CIF.Viewer.Resources.ToolPen;
+            this.ToolPenBtn.Location = new System.Drawing.Point(12, 22);
+            this.ToolPenBtn.Name = "ToolPenBtn";
+            this.ToolPenBtn.Size = new System.Drawing.Size(30, 30);
+            this.ToolPenBtn.TabIndex = 0;
+            this.ToolPenBtn.UseVisualStyleBackColor = true;
             // 
             // ColorSelectorGB
             // 
@@ -291,19 +305,32 @@
             this.MainPB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainPB.Location = new System.Drawing.Point(156, 24);
+            this.MainPB.BackColor = System.Drawing.Color.White;
+            this.MainPB.Location = new System.Drawing.Point(3, 3);
             this.MainPB.Name = "MainPB";
             this.MainPB.Size = new System.Drawing.Size(622, 587);
-            this.MainPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MainPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.MainPB.TabIndex = 4;
             this.MainPB.TabStop = false;
+            // 
+            // ViewerPanel
+            // 
+            this.ViewerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ViewerPanel.AutoScroll = true;
+            this.ViewerPanel.Controls.Add(this.MainPB);
+            this.ViewerPanel.Location = new System.Drawing.Point(156, 27);
+            this.ViewerPanel.Name = "ViewerPanel";
+            this.ViewerPanel.Size = new System.Drawing.Size(622, 572);
+            this.ViewerPanel.TabIndex = 5;
             // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 611);
-            this.Controls.Add(this.MainPB);
+            this.Controls.Add(this.ViewerPanel);
             this.Controls.Add(this.LayersGB);
             this.Controls.Add(this.ColorSelectorGB);
             this.Controls.Add(this.ToolGB);
@@ -314,7 +341,10 @@
             this.Load += new System.EventHandler(this.Viewer_Load);
             this.MainMS.ResumeLayout(false);
             this.MainMS.PerformLayout();
+            this.ToolGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainPB)).EndInit();
+            this.ViewerPanel.ResumeLayout(false);
+            this.ViewerPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +383,7 @@
         private GroupBox ColorSelectorGB;
         private GroupBox LayersGB;
         public PictureBox MainPB;
+        private Button ToolPenBtn;
+        private Panel ViewerPanel;
     }
 }
