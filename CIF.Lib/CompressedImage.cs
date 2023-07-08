@@ -141,6 +141,7 @@ namespace CIF.Lib
 
                 Layers.Add(layer);
             }
+            Quality = 255;
         }
 
         public byte[] Compress()
