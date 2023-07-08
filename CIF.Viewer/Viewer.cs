@@ -1,5 +1,3 @@
-using CIF.Lib;
-
 namespace CIF.Viewer
 {
     public partial class Viewer : Form
@@ -11,7 +9,7 @@ namespace CIF.Viewer
 
         public void NewFile()
         {
-            
+
         }
 
         private void Viewer_Load(object sender, EventArgs e)

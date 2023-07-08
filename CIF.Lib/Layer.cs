@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace CIF.Lib
 {
@@ -24,9 +19,9 @@ namespace CIF.Lib
             Settings = new();
             Name = "Unnamed Layer";
 
-            for(int y = 0; y < Height; y++)
+            for (int y = 0; y < Height; y++)
             {
-                for(int x = 0; x < Width; x++)
+                for (int x = 0; x < Width; x++)
                 {
                     Colors[x, y] = backgroundColor;
                 }

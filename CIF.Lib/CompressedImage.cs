@@ -126,9 +126,9 @@ namespace CIF.Lib
                 };
 
                 int idx = 0;
-                for(int y = 0; y < layerHeight; y++)
+                for (int y = 0; y < layerHeight; y++)
                 {
-                    for(int x = 0; x < layerWidth; x++)
+                    for (int x = 0; x < layerWidth; x++)
                     {
                         try
                         {
@@ -159,7 +159,7 @@ namespace CIF.Lib
             data.AddRange(BitConverter.GetBytes(Height));
             data.AddRange(BitConverter.GetBytes(Layers.Count));
 
-            for(int i = 0; i < Layers.Count; i++)
+            for (int i = 0; i < Layers.Count; i++)
             {
                 List<byte> layer = new();
                 layer.AddRange(BitConverter.GetBytes(Layers[i].Width));
@@ -173,7 +173,7 @@ namespace CIF.Lib
                 List<byte> blueValues = new();
                 List<byte> alphaValues = new();
 
-                for(int y = 0; y < Layers[i].Height; y++)
+                for (int y = 0; y < Layers[i].Height; y++)
                 {
                     for (int x = 0; x < Layers[i].Width; x++)
                     {
