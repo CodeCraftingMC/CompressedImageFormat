@@ -66,7 +66,7 @@ namespace CIF.Lib
         public CompressedImage(byte[] rawData)
         {
             Layers = new();
-            byte[] data = rawData.Skip(11).ToArray();
+            byte[] data = rawData.Skip(10).ToArray();
             Width = BitConverter.ToInt32(data.Take(4).ToArray());
             data = data.Skip(4).ToArray();
             Height = BitConverter.ToInt32(data.Take(4).ToArray());
@@ -139,7 +139,6 @@ namespace CIF.Lib
             };
             data.AddRange(Encoding.ASCII.GetBytes("CIF"));
             data.Add(0x11);
-            data.Add(0x01);
             data.AddRange(BitConverter.GetBytes(0));
             data.AddRange(BitConverter.GetBytes(Width));
             data.AddRange(BitConverter.GetBytes(Height));
